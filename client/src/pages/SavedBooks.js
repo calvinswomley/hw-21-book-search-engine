@@ -10,12 +10,12 @@ import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = (props) => {
   const [setUserData] = useState({});
-
+  const { userData } = useQuery({GET_ME});
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
 
-  const [userData] = useQuery({GET_ME});
-  const [removeABook] = useMutation(REMOVE_BOOK);
+  
+  const { removeABook } = useMutation(REMOVE_BOOK);
   /* Removing useEffect hook per instructions
   useEffect(() => {
     const getUserData = async () => {
