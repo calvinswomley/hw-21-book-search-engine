@@ -7,15 +7,17 @@ const { ApolloServer } = require('apollo-server-express');
 // Import the two parts of a GraphQL schema
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
+const { authMiddleware } = require('./utils/auth');
 //NEW
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 //NEW Create a new instance of an Apollo server with the GraphQL schema
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  context: authMiddleware,
 });
 // Update Express.js to use Apollo server features
 server.applyMiddleware({ app });
