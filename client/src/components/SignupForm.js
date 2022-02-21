@@ -14,6 +14,7 @@ const SignupForm = () => {
     password: '',
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
+  if (!error === undefined) {console.log(error)};
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
