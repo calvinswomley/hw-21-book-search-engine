@@ -1,11 +1,11 @@
 const express = require('express');
-const path = require('path');
-const routes = require('./routes');
-
 //NEW Import the ApolloServer class
 const { ApolloServer } = require('apollo-server-express');
+const path = require('path');
+//const routes = require('./routes');
+
 // Import the two parts of a GraphQL schema
-const { typeDefs, resolvers } = require('./schemas');
+const { typeDefs, resolvers } = require('./schemas/index');
 const db = require('./config/connection');
 const { authMiddleware } = require('./utils/auth');
 //NEW
@@ -31,7 +31,10 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
-app.use(routes);
+//app.use(routes);
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 //NEW
 db.once('open', () => {
