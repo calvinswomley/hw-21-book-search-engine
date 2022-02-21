@@ -9,7 +9,7 @@ const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 //NEW
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 //NEW Create a new instance of an Apollo server with the GraphQL schema
