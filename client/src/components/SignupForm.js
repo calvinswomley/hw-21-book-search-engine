@@ -30,24 +30,27 @@ const SignupForm = () => {
 
     // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
+    console.log(form);
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
     try {
-      const response = await addUser({
-        variables: { ...userFormData },
-      });
-      //const response = await createUser(userFormData);
-      console.log(response);
-      if (response.ok) {
-        console.log(response);
+      const response = await addUser(userFormData);
+      //const data = await addUser({
+      //  variables: { ...userFormData },
+      //});
+      
+      console.log(data);
+      if (!data.ok) {
+        console.log(data);
         throw new Error('something went wrong!');
       }
 
-      const { token } = await data.json();
-      //console.log(user);
-      Auth.login(data.data.addUser[0]);
+      const { token, user } = await response.json();
+      console.log(user);
+      Auth.login(token);
+      //Auth.login(data.addUser.token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
