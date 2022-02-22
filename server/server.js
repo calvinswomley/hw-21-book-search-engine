@@ -5,7 +5,7 @@ const path = require('path');
 //const routes = require('./routes');
 
 // Import the two parts of a GraphQL schema
-const { typeDefs, resolvers } = require('./schemas/index');
+const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 const { authMiddleware } = require('./utils/auth');
 //NEW
@@ -23,7 +23,7 @@ const server = new ApolloServer({
 server.applyMiddleware({ app });
 //NEW
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // if we're in production, serve client/build as static assets
