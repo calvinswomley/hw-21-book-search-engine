@@ -11,7 +11,7 @@ const db = require('./config/connection');
 const { authMiddleware } = require('./utils/auth');
 //NEW
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8080;
 const app = express();
 
 //NEW Create a new instance of an Apollo server with the GraphQL schema
