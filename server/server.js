@@ -3,6 +3,7 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 //const routes = require('./routes');
+require("dotenv").config()
 
 // Import the two parts of a GraphQL schema
 const { typeDefs, resolvers } = require('./schemas');
